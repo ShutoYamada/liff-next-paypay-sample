@@ -17,7 +17,7 @@ const RoomDetailPage = () => {
     // SSR対応のため動的importしている
     import("@line/liff").then((liff: any) => {
       liff
-        .init({ liffId: process.env.LIFF_ID as string })
+        .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID as string })
         .then(() => {
           setLiffObject(liff);
           if (liff.isLoggedIn()) {
