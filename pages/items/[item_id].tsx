@@ -12,6 +12,7 @@ const RoomDetailPage = () => {
   //const [liffObject, setLiffObject] = useState<any | null>(null);
   const [status, setStatus] = useState<string>("LINEログイン中...");
   const [isLogined, setIsLogined] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string>("null");
 
   // useEffect(() => {
   //   // SSR対応のため動的importしている
@@ -42,6 +43,7 @@ const RoomDetailPage = () => {
         // setAccessToken(liffToken);
         setIsLogined(true);
         setStatus("LINEログインに成功しました。");
+        setUserId(context?.userId);
       }
     });
   }, []);
@@ -67,6 +69,7 @@ const RoomDetailPage = () => {
       </Center>
       <Center>
         <p>状態：{status}</p>
+        <p>ユーザID：{userId}</p>
       </Center>
     </>
   );
