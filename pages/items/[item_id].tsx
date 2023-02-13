@@ -9,30 +9,9 @@ const RoomDetailPage = () => {
   // パスパラメータから値を取得
   const { item_id } = router.query;
   const item = ITEM_LIST.find((item) => item.id === item_id);
-  //const [liffObject, setLiffObject] = useState<any | null>(null);
   const [status, setStatus] = useState<string>("LINEログイン中...");
   const [isLogined, setIsLogined] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("null");
-
-  // useEffect(() => {
-  //   // SSR対応のため動的importしている
-  //   import("@line/liff").then((liff: any) => {
-  //     liff
-  //       .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID as string })
-  //       .then(() => {
-  //         setLiffObject(liff);
-  //         if (liff.isLoggedIn()) {
-  //           // ログインの確認を取れたら
-  //           setStatus("LINEログインに成功しました。");
-  //           setIsLogined(true);
-  //         }
-  //       })
-  //       .catch((err: any) => {
-  //         console.error({ err });
-  //         setStatus("LINEログインに失敗しました。");
-  //       });
-  //   });
-  // }, []);
 
   useEffect(() => {
     import("@line/liff").then((liff: any) => {
@@ -49,8 +28,6 @@ const RoomDetailPage = () => {
   }, []);
 
   const onClickPurchase = useCallback(() => {
-    // console.log("item");
-    // console.log(item);
     alert("購入：" + item?.title);
   }, [item]);
 
