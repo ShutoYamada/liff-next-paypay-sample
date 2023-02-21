@@ -1,8 +1,8 @@
 import { SimpleGrid } from "@mantine/core";
 import type { NextPageWithLayout } from "next";
-import ItemCard from "../components/items/ItemCard";
-import CommonLayout from "../layout/CommonLayout";
-import ITEM_LIST from "../mocks/ITEM_LIST";
+import EventCard from "../../components/events/EventCard";
+import CommonLayout from "../../layout/CommonLayout";
+import EVENT_LIST from "../../mocks/EVENT_LIST";
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -14,13 +14,12 @@ const Home: NextPageWithLayout = () => {
         { maxWidth: "xs", cols: 1, spacing: "sm" },
       ]}
     >
-      {ITEM_LIST.map((item) => {
-        return <ItemCard key={item.id} item={item} />;
+      {EVENT_LIST.map((event) => {
+        return <EventCard key={event.id} event={event} />;
       })}
     </SimpleGrid>
   );
 };
 
 Home.getLayout = (page) => <CommonLayout>{page}</CommonLayout>;
-
 export default Home;

@@ -8,7 +8,7 @@ import {
   createStyles,
   Button,
 } from "@mantine/core";
-import Item from "../types/Item";
+import Item from "../../types/Item";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -53,11 +53,9 @@ const useStyles = createStyles((theme) => ({
 
 type Props = {
   item: Item;
-  canPurchase: boolean;
-  onClickPurchase: () => void;
 };
 
-const ItemDetailCard = ({ item, canPurchase, onClickPurchase }: Props) => {
+const ItemCard = ({ item }: Props) => {
   const { classes } = useStyles();
   const router = useRouter();
 
@@ -80,13 +78,23 @@ const ItemDetailCard = ({ item, canPurchase, onClickPurchase }: Props) => {
       </Group>
 
       <Card.Section className={classes.section}>
-        <Group spacing={30} style={{ justifyContent: "center" }}>
-          <Button radius="xl" onClick={onClickPurchase} disabled={!canPurchase}>
-            決済する
+        <Group spacing={30} style={{ justifyContent: "space-between" }}>
+          <div>
+            <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
+              {`¥${item.price?.toLocaleString()}`}
+            </Text>
+          </div>
+          <Button
+            radius="xl"
+            onClick={() => {
+              router.push(`/items/${item.id}`);
+            }}
+          >
+            購入
           </Button>
         </Group>
       </Card.Section>
     </Card>
   );
 };
-export default ItemDetailCard;
+export default ItemCard;

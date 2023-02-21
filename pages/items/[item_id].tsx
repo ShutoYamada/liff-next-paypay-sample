@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Center, Container } from "@mantine/core";
-import ItemDetailCard from "../../components/ItemDetailCard";
+import ItemDetailCard from "../../components/items/ItemDetailCard";
 import ITEM_LIST from "../../mocks/ITEM_LIST";
+import type { NextPageWithLayout } from "next";
+import CommonLayout from "../../layout/CommonLayout";
 
-const RoomDetailPage = () => {
+const ItemDetailPage: NextPageWithLayout = () => {
   const router = useRouter();
   // パスパラメータから値を取得
   const { item_id } = router.query;
@@ -52,4 +54,5 @@ const RoomDetailPage = () => {
   );
 };
 
-export default RoomDetailPage;
+ItemDetailPage.getLayout = (page) => <CommonLayout>{page}</CommonLayout>;
+export default ItemDetailPage;

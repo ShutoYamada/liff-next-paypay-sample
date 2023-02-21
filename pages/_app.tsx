@@ -1,7 +1,9 @@
-import type { AppProps } from "next/app";
+import type { AppPropsWithLayout } from "next/app";
 import { useEffect, useState } from "react";
+import CommonLayout from "../layout/CommonLayout";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
   const [liffObject, setLiffObject] = useState<any | null>(null);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     });
   }, []);
 
-  return <Component {...pageProps} />;
+  return getLayout(<Component {...pageProps} />);
 };
 
 export default MyApp;
